@@ -20,4 +20,9 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
+function apply_patch()
+{
+    repo forall -c '$ANDROID_BUILD_TOP/device/softwinner/wing-common/apply_patch.sh'
+}
+
 add_lunch_combo wing_clover-eng
