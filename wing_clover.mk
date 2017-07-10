@@ -51,7 +51,7 @@ PRODUCT_COPY_FILES += \
     device/softwinner/wing-clover/configs/gsensor.cfg:system/usr/gsensor.cfg \
     device/softwinner/wing-clover/configs/media_profiles.xml:system/etc/media_profiles.xml \
     device/softwinner/wing-clover/configs/sw-keyboard.kl:system/usr/keylayout/sw-keyboard.kl \
-    device/softwinner/wing-clover/configs/tp.idc:system/usr/idc/tp.idc
+    device/softwinner/wing-clover/configs/ft5x_ts.idc:system/usr/idc/ft5x_ts.idc
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml   \
