@@ -3,14 +3,18 @@ $(call inherit-product, device/softwinner/wing-common/ProductCommon.mk)
 
 DEVICE_PACKAGE_OVERLAYS := device/softwinner/wing-clover/overlay
 
+# setupfs
+PRODUCT_PACKAGES += \
+    setupfs \
+    e2fsck \
+    mke2fs
+
 # gps
 BOARD_USES_GPS_TYPE := simulator
 PRODUCT_PACKAGES += \
     gps.exDroid \
     Bluetooth \
-    VibratorTest \
-	CVBS \
-	DVD
+    VibratorTest
 
 # drm
 PRODUCT_PROPERTY_OVERRIDES += \
