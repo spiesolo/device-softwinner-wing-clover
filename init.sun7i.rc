@@ -16,6 +16,12 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
     mkdir /databk 0700 root  system
 
+on init
+    insmod /nand.ko
+
+# create partition symlinks
+    symlink /dev/block/nandd /dev/block/system
+
 on early-fs
     mount ext4 /dev/block/system /system ro wait noatime nodev barrier=0
     insmod  /system/vendor/modules/disp.ko

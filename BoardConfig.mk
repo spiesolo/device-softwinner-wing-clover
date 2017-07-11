@@ -5,6 +5,9 @@
 
 include device/softwinner/wing-common/BoardConfigCommon.mk
 
+# override to use Android init.rc
+TARGET_PROVIDES_INIT_RC := false
+
 # image related
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RECOVERY := false
