@@ -136,7 +136,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.property.tabletUI=false \
     ro.sf.lcd_density=120 \
-     ro.property.fontScale=1.10
+    ro.property.fontScale=1.4
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.firmware=v3.0.1
@@ -148,10 +148,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # default language setting
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.country=CN \
-   	persist.sys.timezone=Asia/Shanghai \
-	persist.sys.language=zh
-	ro.property.bluetooth.rtk8723a=true
+    persist.sys.country=CN \
+    persist.sys.timezone=Asia/Shanghai \
+    persist.sys.language=zh
 
 $(call inherit-product-if-exists, device/softwinner/wing-clover/modules/modules.mk)
 
