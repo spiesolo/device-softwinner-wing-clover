@@ -74,8 +74,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
+    frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
 # rtl8723au bt + wifi
 PRODUCT_COPY_FILES += \
@@ -131,7 +130,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.udisk.lable=WING \
     ro.debuggable=1 
 
-
 # ui
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.property.tabletUI=false \
@@ -151,6 +149,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.country=CN \
     persist.sys.timezone=Asia/Shanghai \
     persist.sys.language=zh
+
+# disable preloading of libEGL, which would block
+# Zygote from booting up, as Mali libEGL can create
+# threads which violates Zygote's boot design.
+# See dalvik/src/main/java/dalvik/system/Zygote.java
+# for detail.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.zygote.disable_gl_preload=true
 
 $(call inherit-product-if-exists, device/softwinner/wing-clover/modules/modules.mk)
 
