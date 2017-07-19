@@ -66,8 +66,21 @@ PRODUCT_COPY_FILES += \
     #device/softwinner/wing-clover/media/bootlogo.bmp:system/media/bootlogo.bmp \
     #device/softwinner/wing-clover/media/initlogo.bmp:system/media/initlogo.bmp 
 
+ifneq ($(filter 4.%, $(PLATFORM_VERSION)),)
+# Android 4.x.x
 PRODUCT_COPY_FILES += \
     device/softwinner/wing-clover/vold.fstab:system/etc/vold.fstab
+else
+# otherwise
+PRODUCT_COPY_FILES += \
+    device/softwinner/wing-clover/vold.fstab:system/etc/fstab.sun7i
+endif
+
+# for partition mount in mount_all
+PRODUCT_COPY_FILES += \
+    device/softwinner/wing-clover/fstab.sun7i:root/fstab.sun7i
+
+##### hardware and soft permissions ########
 
 # wifi & bt config file
 PRODUCT_COPY_FILES += \
@@ -75,6 +88,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
+
+# Need AppWidget permission to prevent from Launcher's crash, for Android L or later
+ifneq ($(wildcard frameworks/native/data/etc/android.software.app_widgets.xml),)
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
+endif
+
+
+####### bt/wifi firmware ##########
 
 # rtl8723au bt + wifi
 PRODUCT_COPY_FILES += \

@@ -41,15 +41,7 @@ on early-fs
     class_start early
 
 on fs
-    wait /dev/block/data
-    mount ext4 /dev/block/data /data wait noatime nosuid nodev barrier=0
-    wait /dev/block/cache
-    mount ext4 /dev/block/cache /cache wait noatime nosuid nodev barrier=0
-    #format_userdata /dev/block/UDISK WING
-    wait /dev/block/databk
-    mount ext4 /dev/block/databk /databk wait noatime nosuid nodev barrier=0
-    umount /databk
-    rmdir /databk
+    mount_all /fstab.sun7i
 
 on boot
 # use automatic detecttion insmod ctp & gsensor driver
