@@ -23,6 +23,11 @@
 function apply_patch()
 {
     repo forall -c '$ANDROID_BUILD_TOP/device/softwinner/wing-common/apply_patch.sh'
+
+    echo "If you see error like:"
+    echo "   unsupported reloc 43 or unsupported reloc 42"
+    echo "Replace the prebuilt ld with host ld:"
+    echo "   cp /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.11-4.6/x86_64-linux/bin/ld"
 }
 
 add_lunch_combo wing_clover-eng
