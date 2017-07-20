@@ -24,10 +24,11 @@ function apply_patch()
 {
     repo forall -c '$ANDROID_BUILD_TOP/device/softwinner/wing-common/apply_patch.sh'
 
-    echo "If you see error like:"
-    echo "   unsupported reloc 43 or unsupported reloc 42"
-    echo "Replace the prebuilt ld with host ld:"
-    echo "   cp /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.11-4.6/x86_64-linux/bin/ld"
+    echo "If you see errors like unsupported reloc 43 or 42 when compiling host art"
+    echo "replace the prebuilt ld with host ld as below to fix the issue:"
+    echo "Android L: cp /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.11-4.6/x86_64-linux/bin/ld"
+    echo "Android M: cp /usr/bin/ld.gold prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8/x86_64-linux/bin/ld"
+    echo "This kind of issue is seen on Ubuntu 16.04 when compiling host tools, due to incompatible binutils"
 }
 
 add_lunch_combo wing_clover-eng
